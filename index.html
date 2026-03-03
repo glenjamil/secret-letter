@@ -23,13 +23,37 @@ input { padding:10px; border-radius:8px; border:none; text-align:center; font-si
 
 /* NOTE */
 .note {
-  width:0; height:0; margin:20px auto;
-  background:#fff8b0; border:3px solid #e6c200; border-radius:10px;
-  padding:0; overflow:hidden; transition: all 1s ease;
+  width:0; 
+  height:0; 
+  margin:20px auto;
+  background:#fff8b0;
+  border:3px solid #e6c200;
+  border-radius:10px;
+  padding:0; 
+  overflow:hidden; 
+  transition: all 1s ease;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+
+  /* Notebook lines effect */
+  background-image: repeating-linear-gradient(
+    to bottom, 
+    #fff8b0 0px, 
+    #fff8b0 24px, 
+    #e6c200 25px
+  );
+  background-size: 100% 25px;
 }
-.note.open { width:90%; max-width:350px; height:auto; padding:15px; }
-.note p { text-decoration: underline; line-height:1.5; font-size:14px; }
+.note.open { 
+  width:90%; 
+  max-width:350px; 
+  height:auto; 
+  padding:15px; 
+}
+.note p {
+  line-height:1.6;
+  font-size:14px;
+  margin:0;
+}
 
 /* PHOTOS */
 .photos { position:relative; height:220px; margin-top:20px; display:flex; justify-content:center; align-items:flex-start; }
