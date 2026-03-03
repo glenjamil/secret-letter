@@ -43,21 +43,33 @@ input { padding:10px; border-radius:8px; border:none; text-align:center; font-si
     #e6c200 25px
   );
   background-size: 100% 25px;
+  position: relative;
+  z-index:2;
 }
 .note.open { width:90%; max-width:350px; height:auto; padding:15px; }
 .note p { line-height:1.6; font-size:14px; margin:0; }
 
 /* PHOTOS */
+.photo-column {
+  position: relative;
+  margin-left:10px;
+  margin-right:10px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  z-index:1;
+}
+
 .photo-column img.photo {
-  width:90px; /* bigger */
+  width:90px; 
   margin:5px 0;
   opacity:0;
   transform:translateY(30px) scale(0.8);
   transition: all 0.5s ease;
   border-radius:8px;
   object-fit:cover;
+  position: relative;
 }
-.photo-column { margin-left:5px; margin-right:5px; display:flex; flex-direction:column; justify-content:space-between; }
 
 /* KISS */
 .kiss { font-size:40px; cursor:pointer; display:none; margin-top:15px; }
