@@ -130,7 +130,20 @@ Thank you for making my life, iloveyouu and imisyouuu always....
     </p>
     <p><b>Click to sign after reading</b></p>
 <div class="kiss" id="kiss" style="display:none;">💋</div>
-<button onclick="closeAll()">Sign 💗</button>
+<button onclick="<script>
+function closeAll(){
+  document.getElementById("kiss").style.display = "block";
+
+  setTimeout(function(){
+    document.querySelectorAll(".photo").forEach(p => p.classList.remove("show"));
+    document.getElementById("note").classList.remove("open");
+  },1500);
+
+  setTimeout(function(){
+    alert("Thank you for your time mahal ❤️");
+  },2000);
+}
+</script>">Sign 💗</button>
 
   <div class="photos">
     <img src="photo1.jpg" class="photo" id="p1" style="left:0;">
