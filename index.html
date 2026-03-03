@@ -8,14 +8,32 @@
 body {
   margin:0;
   font-family: Arial, sans-serif;
-  background: #ffc0cb;
-  text-align:center;
   overflow-x:hidden;
 }
-.page { display:none; min-height:100vh; padding-top:80px; }
+
+.page { display:none; min-height:100vh; padding-top:80px; text-align:center; }
 .active { display:block; }
 button { padding:10px 20px; border:none; background:#ff69b4; color:white; border-radius:8px; cursor:pointer; font-size:16px; }
 input { padding:10px; border-radius:8px; border:none; text-align:center; font-size:16px; }
+
+/* PAGE THEMES */
+#page1 { background: #ffc0cb; }
+#page2, #page3 {
+  background: #ffc0cb;
+  background-image: repeating-linear-gradient(
+    0deg, 
+    transparent 0px, 
+    transparent 24px, 
+    rgba(255,182,193,0.2) 25px
+  ), repeating-linear-gradient(
+    45deg,
+    rgba(255,105,180,0.1) 0px,
+    rgba(255,105,180,0.1) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  background-size: 100% 25px, 20px 20px;
+}
 
 /* ENVELOPE */
 .envelope { font-size:120px; cursor:pointer; transition:0.5s; }
@@ -29,7 +47,6 @@ input { padding:10px; border-radius:8px; border:none; text-align:center; font-si
   border-radius:10px;
   padding:0; overflow:hidden; transition: all 1s ease;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  /* Notebook lines effect */
   background-image: repeating-linear-gradient(
     to bottom, 
     #fff8b0 0px, 
@@ -43,7 +60,7 @@ input { padding:10px; border-radius:8px; border:none; text-align:center; font-si
 
 /* PHOTOS */
 .photo-column img.photo {
-  width:60px;
+  width:90px; /* bigger */
   margin:5px 0;
   opacity:0;
   transform:translateY(30px) scale(0.8);
@@ -51,13 +68,17 @@ input { padding:10px; border-radius:8px; border:none; text-align:center; font-si
   border-radius:8px;
   object-fit:cover;
 }
-.photo-column img.photo.show {
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
+.photo-column { margin-left:5px; margin-right:5px; display:flex; flex-direction:column; justify-content:space-between; }
 
 /* KISS */
 .kiss { font-size:40px; cursor:pointer; display:none; margin-top:15px; }
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width:500px){
+  .photo-column img.photo { width:70px; }
+  .note.open { width:95%; }
+  .note p { font-size:13px; }
+}
 </style>
 </head>
 <body>
@@ -65,7 +86,7 @@ input { padding:10px; border-radius:8px; border:none; text-align:center; font-si
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
   <div class="envelope">💌</div>
-  <h3>For Denise Lorraine </h3>
+  <h3>For Denise Lorraine only</h3>
   <p>To verify, please enter code</p>
   <input type="password" id="codeBox" placeholder="Enter code"><br><br>
   <button onclick="checkCode()">Continue</button>
@@ -75,8 +96,8 @@ input { padding:10px; border-radius:8px; border:none; text-align:center; font-si
 <!-- PAGE 2 -->
 <div class="page" id="page2">
   <div class="envelope big" onclick="openEnvelope()">💌</div>
-  <p>Hi Denise Lorraine, I have a letter for you.</p>
-  <p>Click to open</p>
+  <p>Hi Denise Lorraine, this message is for you.</p>
+  <p>Click the envelope to open</p>
 </div>
 
 <!-- PAGE 3 -->
@@ -86,7 +107,7 @@ input { padding:10px; border-radius:8px; border:none; text-align:center; font-si
   <div style="display:flex; justify-content:center; align-items:flex-start; margin-top:20px; flex-wrap:wrap;">
 
     <!-- LEFT PHOTOS -->
-    <div class="photo-column" id="left-photos" style="margin-right:10px; display:flex; flex-direction:column; justify-content:space-between;">
+    <div class="photo-column" id="left-photos">
       <img src="photo6.jpg" class="photo" id="lp6">
       <img src="photo5.jpg" class="photo" id="lp5">
       <img src="photo3.jpg" class="photo" id="lp3">
@@ -110,7 +131,7 @@ Thank you for making my life, iloveyouu and imisyouuu always....<br><br>
     </div>
 
     <!-- RIGHT PHOTOS -->
-    <div class="photo-column" id="right-photos" style="margin-left:10px; display:flex; flex-direction:column; justify-content:space-between;">
+    <div class="photo-column" id="right-photos">
       <img src="photo1.jpg" class="photo" id="rp1">
       <img src="photo4.jpg" class="photo" id="rp4">
       <img src="photo2.jpg" class="photo" id="rp2">
