@@ -53,7 +53,8 @@ input {
   width:0;
   height:0;
   margin:20px auto;
-  background:#fff8b0;
+  background:#ffe96a;
+  border:3px solid #e6c200;
   overflow:hidden;
   transition:all 1s ease;
   padding:0;
@@ -76,8 +77,26 @@ input {
   width:120px;
   position:absolute;
   opacity:0;
-  transition:1s ease;
+  transition:all 1s ease;
 }
+
+#p1 { left:-150px; top:50px; }
+#p2 { left:-150px; top:180px; }
+#p3 { left:-150px; top:310px; }
+#p4 { right:-150px; top:50px; }
+#p5 { right:-150px; top:180px; }
+#p6 { right:-150px; top:310px; }
+
+.photo.show {
+  opacity:1;
+}
+
+#p1.show { left:20px; }
+#p2.show { left:180px; }
+#p3.show { left:340px; }
+#p4.show { right:340px; }
+#p5.show { right:180px; }
+#p6.show { right:20px; }
 
 .show {
   opacity:1;
@@ -117,7 +136,7 @@ input {
   
   <div class="note" id="note">
     <h3>Dear Raine,</h3>
-    <p>
+    <p style="text-decoration: underline; line-height:1.6;">
 HAPPIEST BIRTHDAY to you baby!!!<br><br>
 Im so glad i met you mahal and you know what i often look over ahead of us and disregard every arguments we had, i will always see you as someone special who loves and adores me wholeheartedly, who always spoils me with a condition shempre, who always wants my attention above all, and i love every part of you and i tell you that, even with your sungit personality there's no denise lorraine without it hehe.
 Right now i feel a little lonely but still i can feel your warmth even from afar, but soon we will be together again and that i treasure the most.
