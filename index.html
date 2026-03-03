@@ -19,20 +19,9 @@ input { padding:10px; border-radius:8px; border:none; text-align:center; font-si
 /* PAGE THEMES */
 #page1 { background: #ffc0cb; }
 #page2, #page3 {
-  background: #ffc0cb;
-  background-image: repeating-linear-gradient(
-    0deg, 
-    transparent 0px, 
-    transparent 24px, 
-    rgba(255,182,193,0.2) 25px
-  ), repeating-linear-gradient(
-    45deg,
-    rgba(255,105,180,0.1) 0px,
-    rgba(255,105,180,0.1) 10px,
-    transparent 10px,
-    transparent 20px
-  );
-  background-size: 100% 25px, 20px 20px;
+  background-color: #ffc0cb;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text x="0" y="15" font-size="15" fill="rgba(255,105,180,0.3)">♥</text></svg>');
+  background-repeat: repeat;
 }
 
 /* ENVELOPE */
@@ -155,17 +144,16 @@ function openEnvelope(){
   document.getElementById("page2").classList.remove("active");
   document.getElementById("page3").classList.add("active");
 
-  // Step 1: Expand note
   setTimeout(()=>{
     document.getElementById("note").classList.add("open");
 
-    // Step 2: Sequentially pop-out left photos
+    // Left photos pop sequentially
     let left = ['lp6','lp5','lp3'];
     left.forEach((id,i)=>{
       setTimeout(()=>{ document.getElementById(id).classList.add('show'); }, 600 + i*300);
     });
 
-    // Step 3: Sequentially pop-out right photos
+    // Right photos pop sequentially
     let right = ['rp1','rp4','rp2'];
     right.forEach((id,i)=>{
       setTimeout(()=>{ document.getElementById(id).classList.add('show'); }, 1500 + i*300);
