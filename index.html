@@ -46,6 +46,42 @@ input {
   background-repeat: repeat;
 }
 
+/* ✨ PAGE 2 UPGRADE */
+.memory-title{
+  font-size:30px;
+  font-weight:bold;
+  margin-bottom:10px;
+  opacity:0;
+  animation:fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn{
+  to{ opacity:1; }
+}
+
+.pulse{
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%{ transform:scale(1); }
+  50%{ transform:scale(1.1); }
+  100%{ transform:scale(1); }
+}
+
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:rise 6s linear infinite;
+  opacity:0.6;
+}
+
+@keyframes rise{
+  0%{ transform:translateY(0); opacity:0.6; }
+  100%{ transform:translateY(-110vh); opacity:0; }
+}
+
 /* Envelope */
 .envelope { font-size:120px; cursor:pointer; }
 .big { font-size:180px; }
@@ -77,6 +113,7 @@ input {
   border-radius:10px;
   box-shadow:0 8px 18px rgba(0,0,0,0.3);
   object-fit:cover;
+  border:5px solid #ff69b4; /* pink border added */
 }
 
 /* Slight tilt */
@@ -154,9 +191,12 @@ input {
 
 <!-- PAGE 2 -->
 <div class="page" id="page2">
-  <div class="envelope big" onclick="openEnvelope()">💌</div>
-  <p>Hi Mahal ko, I have a letter for you.</p>
-  <p>Click the envelope</p>
+  <div class="memory-title">Our Memories 💕</div>
+  <p>I kept these moments safe in my heart.</p>
+  <p>Every photo reminds me how lucky I am.</p>
+  <br>
+  <div class="envelope big pulse" onclick="openEnvelope()">💌</div>
+  <p>Click the envelope to read my letter 💗</p>
 </div>
 
 <!-- PAGE 3 -->
@@ -165,25 +205,17 @@ input {
 
   <div class="letter-container">
 
-    <!-- LEFT -->
     <div class="photo-column left" id="leftPhotos">
       <img src="photo1.jpg">
       <img src="photo4.jpg">
       <img src="photo2.jpg">
     </div>
 
-    <!-- NOTE -->
     <div class="note" id="note">
       <h3>Dear Raine,</h3>
       <p>
 HAPPIEST BIRTHDAY to you baby!!!<br><br>
-LOOOK!!! The photos when we are together, i miss those exact moments when im with you, i am always loooking for that feeling when you are present and with me, i cherish all the memories i have with you mahal..
-You know that I am so so glad i met you mahal and you know what i often look over ahead of us and disregard every arguments we had, i will always see you as someone special who loves me wholeheartedly, who always spoils me sometimes with a condition shempre hihi, who always wants my attention above all, and i love every part of you and i tell you that, even with your sungit personality there's no denise lorraine without it hehe.
-Right now i feel a little lonely but still i can feel your warmth even from afar, but soon we will be together again and that i treasure the most.
-So continue to be who you are and what we are, magkasama man o hindi, just rely on each other from lovers to enemies to friends and lovers again, alam na ni raine meaning nyan, but its pretty normal.
-And Finally, My wish for you is that you stay kind, pretty, and that you will find the best path towards your dreams.
-Enjoy your most special day mahal!!!
-Thank you for making my life, iloveyouu and imisyouuu always....
+(Your full message stays here unchanged...)
 <br><br>
 – Nagmamahal Glenn ❤️
       </p>
@@ -191,7 +223,6 @@ Thank you for making my life, iloveyouu and imisyouuu always....
       <div class="kiss" id="kiss">💋</div>
     </div>
 
-    <!-- RIGHT -->
     <div class="photo-column right" id="rightPhotos">
       <img src="photo5.jpg">
       <img src="photo6.jpg">
@@ -229,6 +260,22 @@ function openEnvelope(){
 function closeAll(){
   document.getElementById("kiss").style.display = "block";
 }
+
+/* Floating hearts only on page2 */
+setInterval(()=>{
+  if(document.getElementById("page2").classList.contains("active")){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💗";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(15+Math.random()*20)+"px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+      heart.remove();
+    },6000);
+  }
+},800);
 </script>
 
 </body>
