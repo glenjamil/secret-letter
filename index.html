@@ -2,35 +2,101 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>For Raine 💌</title>
+<title>For Raine 💗</title>
+
 <style>
 body {
   margin:0;
   font-family: Arial, sans-serif;
   overflow-x:hidden;
 }
+
+.page { 
+  display:none; 
+  min-height:100vh; 
+  padding-top:80px; 
+  text-align:center; 
+}
+
 .active { display:block; }
-button { padding:10px 20px; border:none; background:#ff69b4; color:white; border-radius:8px; cursor:pointer; font-size:16px; }
-input { padding:10px; border-radius:8px; border:none; text-align:center; font-size:16px; }
+
+button { 
+  padding:10px 20px; 
+  border:none; 
+  background:#ff69b4; 
+  color:white; 
+  border-radius:8px; 
+  cursor:pointer; 
+  font-size:16px; 
+}
+
+input { 
+  padding:10px; 
+  border-radius:8px; 
+  border:none; 
+  text-align:center; 
+  font-size:16px; 
+}
 
 #page1 { background: #ffc0cb; }
+
 #page2, #page3 {
   background-color: #ffc0cb;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text x="0" y="15" font-size="15" fill="rgba(255,105,180,0.3)">♥</text></svg>');
   background-repeat: repeat;
 }
 
-/* ENVELOPE */
-.envelope { font-size:120px; cursor:pointer; transition:0.5s; }
+/* Envelope */
+.envelope { font-size:120px; cursor:pointer; }
 .big { font-size:180px; }
 
-/* NOTE */
+/* Layout */
+.letter-container {
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:25px;
+  margin-top:20px;
+}
+
+/* Photo columns */
+.photo-column {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  opacity:0;
+  transition: opacity 1s ease;
+}
+
+.photo-column.show {
+  opacity:1;
+}
+
+.photo-column img {
+  width:120px;
+  border-radius:10px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.3);
+  object-fit:cover;
+}
+
+/* Slight tilt */
+.left img:nth-child(1) { transform: rotate(-6deg); }
+.left img:nth-child(2) { transform: rotate(4deg); }
+.left img:nth-child(3) { transform: rotate(-3deg); }
+
+.right img:nth-child(1) { transform: rotate(5deg); }
+.right img:nth-child(2) { transform: rotate(-4deg); }
+.right img:nth-child(3) { transform: rotate(6deg); }
+
+/* Note */
 .note {
-  width:0; height:0; margin:20px auto;
+  width:0;
+  overflow:hidden;
   background:#fff8b0;
   border:3px solid #e6c200;
   border-radius:10px;
-  padding:0; overflow:hidden; transition: all 1s ease;
+  padding:0;
+  transition: all 1s ease;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   background-image: repeating-linear-gradient(
     to bottom, 
@@ -39,42 +105,38 @@ input { padding:10px; border-radius:8px; border:none; text-align:center; font-si
     #e6c200 25px
   );
   background-size: 100% 25px;
-  position: relative;
-  z-index:2;
-}
-.note.open { width:90%; max-width:300px; height:auto; padding:15px; }
-.note p { line-height:1.6; font-size:14px; margin:0; }
-
-/* PHOTOS */
-.photo-column {
-  position: absolute;
-  display:flex; 
-  flex-direction:column; 
-  justify-content:space-between;
-  top:50px;
+  max-width:400px;
 }
 
-#left-photos { left:10px; }
-#right-photos { right:10px; }
-
-.photo-column img.photo {
-  width:110px;
-  margin:10px 0;
-  opacity:0;
-  transform:translateY(30px) scale(0.8);
-  transition: all 0.5s ease;
-  border-radius:8px;
-  object-fit:cover;
+.note.open {
+  width:400px;
+  padding:20px;
 }
 
-/* KISS */
-.kiss { font-size:40px; cursor:pointer; display:none; margin-top:15px; }
+.note p { 
+  line-height:1.6; 
+  font-size:14px; 
+  margin:0; 
+}
 
-/* MOBILE */
-@media (max-width:500px){
-  .photo-column img.photo { width:70px; }
-  .note.open { width:95%; }
-  .note p { font-size:13px; }
+.kiss { 
+  font-size:40px; 
+  display:none; 
+  margin-top:15px; 
+}
+
+/* Mobile */
+@media (max-width:800px){
+  .letter-container {
+    flex-direction:column;
+    align-items:center;
+  }
+  .photo-column {
+    flex-direction:row;
+  }
+  .photo-column img {
+    width:80px;
+  }
 }
 </style>
 </head>
@@ -83,7 +145,7 @@ input { padding:10px; border-radius:8px; border:none; text-align:center; font-si
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
   <div class="envelope">💌</div>
-  <h3>For Rainey</h3>
+  <h3>For Denise Lorraine</h3>
   <p>To verify, please enter code</p>
   <input type="password" id="codeBox" placeholder="Enter code"><br><br>
   <button onclick="checkCode()">Continue</button>
@@ -101,37 +163,35 @@ input { padding:10px; border-radius:8px; border:none; text-align:center; font-si
 <div class="page" id="page3">
   <div class="envelope big">💌</div>
 
-  <!-- Left photos -->
-  <div class="photo-column" id="left-photos">
-    <img src="photo6.jpg" class="photo" id="lp6">
-    <img src="photo5.jpg" class="photo" id="lp5">
-    <img src="photo3.jpg" class="photo" id="lp3">
-  </div>
+  <div class="letter-container">
 
-  <!-- Note -->
-  <div class="note" id="note">
-    <h3>Dear Raine,</h3>
-    <p>
+    <!-- LEFT -->
+    <div class="photo-column left" id="leftPhotos">
+      <img src="photo1.jpg">
+      <img src="photo4.jpg">
+      <img src="photo2.jpg">
+    </div>
+
+    <!-- NOTE -->
+    <div class="note" id="note">
+      <h3>Dear Raine,</h3>
+      <p>
 HAPPIEST BIRTHDAY to you baby!!!<br><br>
-Im so glad i met you mahal and you know what i often look over ahead of us and disregard every arguments we had, i will always see you as someone special who loves and adores me wholeheartedly, who always spoils me with a condition shempre, who always wants my attention above all, and i love every part of you and i tell you that, even with your sungit personality there's no denise lorraine without it hehe.<br><br>
-Right now i feel a little lonely but still i can feel your warmth even from afar, but soon we will be together again and that i treasure the most.<br><br>
-So continue to be who you are and what we are, magkasama man o hindi, just rely on each other from lovers to enemies to friends and lovers again, alam na ni raine meaning nyan, but its pretty normal.<br><br>
-And Finally, My wish for you is that you stay kind, pretty, and that you will find the best path towards your dreams.<br><br>
-Enjoy your most special day mahal!!!<br><br>
-Thank you for making my life, iloveyouu and imisyouuuu always....<br><br>
+Im so glad i met you mahal...<br><br>
 – Nagmamahal Glenn ❤️
-    </p>
-    <button onclick="closeAll()">Sign 💗</button>
-    <div class="kiss" id="kiss">💋</div>
-  </div>
+      </p>
+      <button onclick="closeAll()">Sign 💗</button>
+      <div class="kiss" id="kiss">💋</div>
+    </div>
 
-  <!-- Right photos -->
-  <div class="photo-column" id="right-photos">
-    <img src="photo1.jpg" class="photo" id="rp1">
-    <img src="photo4.jpg" class="photo" id="rp4">
-    <img src="photo2.jpg" class="photo" id="rp2">
-  </div>
+    <!-- RIGHT -->
+    <div class="photo-column right" id="rightPhotos">
+      <img src="photo5.jpg">
+      <img src="photo6.jpg">
+      <img src="photo3.jpg">
+    </div>
 
+  </div>
 </div>
 
 <script>
@@ -151,35 +211,16 @@ function openEnvelope(){
 
   setTimeout(()=>{
     document.getElementById("note").classList.add("open");
-
-    // Left photos pop sequentially
-    let left = ['lp6','lp5','lp3'];
-    left.forEach((id,i)=>{
-      setTimeout(()=>{ document.getElementById(id).classList.add('show'); }, 600 + i*300);
-    });
-
-    // Right photos pop sequentially
-    let right = ['rp1','rp4','rp2'];
-    right.forEach((id,i)=>{
-      setTimeout(()=>{ document.getElementById(id).classList.add('show'); }, 1500 + i*300);
-    });
-
   },500);
+
+  setTimeout(()=>{
+    document.getElementById("leftPhotos").classList.add("show");
+    document.getElementById("rightPhotos").classList.add("show");
+  },1300);
 }
 
 function closeAll(){
   document.getElementById("kiss").style.display = "block";
-
-  setTimeout(()=>{
-    ['lp6','lp5','lp3','rp1','rp4','rp2'].forEach(id=>{
-      document.getElementById(id).classList.remove('show');
-    });
-    document.getElementById("note").classList.remove("open");
-  },1500);
-
-  setTimeout(()=>{
-    alert("Thank you for your time mahal ❤️");
-  },2000);
 }
 </script>
 
